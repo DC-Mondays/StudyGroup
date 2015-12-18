@@ -8,4 +8,5 @@ class UserTest < ActiveSupport::TestCase
 #
 #    assert @user, "invite should create user object"
 #  end
+  
 end

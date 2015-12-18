@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def self.send_invite(creator, created)
+    binding.pry
     created
   end
 
