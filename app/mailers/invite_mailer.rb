@@ -5,7 +5,7 @@ class InviteMailer < ApplicationMailer
   end
 
   def welcome_email(email, email_body)
-    binding.pry
+    
   mail(to: email,
   body: email_body,
   content_type: "text/html",

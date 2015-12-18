@@ -8,6 +8,13 @@ Bundler.require(*Rails.groups)
 
 module StudyGroup
   class Application < Rails::Application
+    
+    if ENV["RAILS_ENV"] == :production
+      ENV["THIS_URL"] = "http://railsstudygroup.org"
+    else
+      ENV["THIS_URL"] = "http://localhost:3000"
+    end
+     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
