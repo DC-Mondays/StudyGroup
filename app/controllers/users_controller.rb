@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
+
     if current_user.nil?
       flash[:notice] = "You don't have authority to access this page"
       redirect_to root_path
@@ -16,18 +17,21 @@ class UsersController < ApplicationController
     if @user.nil?
       render :new
     else
+    
       redirect_to user_path(@user)
+      
     end
   end
 
   def show
+    
     @user = User.find(params[:id])
   end
 
   private
 
   def user_params
-    require(:user).permit(:handle, :email)
+    params.require(:user).permit(:handle, :email)
   end
 
   def invite_params

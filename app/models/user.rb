@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   def self.invite(user, creator)
     return nil if creator.nil?
+
     if User.find_by_email(user["email"])
       return nil
     else
@@ -13,7 +14,6 @@ class User < ActiveRecord::Base
   end
 
   def self.send_invite(creator, created)
-    binding.pry
     created
   end
 
