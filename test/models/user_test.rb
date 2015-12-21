@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'mocha/mini_test'
 
 class UserTest < ActiveSupport::TestCase
 
@@ -22,6 +23,10 @@ class UserTest < ActiveSupport::TestCase
     
     assert my_body.include?(ENV["THIS_URL"] + "/users/confirm/" + "7e4fe0b6798e0a058f60782e3ace131e0f275ebc930a5cfae063ccb1782c1917"), "Must include host URL + confirmation path"
     User.unstub(:create_confirmation_token)
+  end
+  
+  test "mocha" do
+    binding.pry
   end
  # test "test that invite returns user object" do
 #    creator = FactoryGirl.build(:user)
