@@ -14,21 +14,26 @@ class User < ActiveRecord::Base
   end
 
   def self.send_invite(creator, created)
-    
     invite_body = create_invite_body(created)
+
+    InviteMailer.welcome_email(created.email, invite_body)
     created
+  end
+
+  def nothing
+    puts "I don't do anything"
   end
 
   def confirm
   end
-  
+
   private
-  
-  
+
+
   def self.create_confirmation_token
     SecureRandom.hex(16)
   end
-  
+
   def self.create_invite_body(invitee)
     invitee.confirmation_token = create_confirmation_token
     invite_body = "Hello StudyGroup Friend,\n"
@@ -38,6 +43,6 @@ class User < ActiveRecord::Base
     invite_body << invitee.confirmation_token
     invite_body << "\nThank You Very Much, \nStudyGroup Team"
   end
-  
+
 
 end
