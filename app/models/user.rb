@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     puts "I don't do anything"
   end
 
-  def confirm
+  def self.confirm(token)
   end
 
   private

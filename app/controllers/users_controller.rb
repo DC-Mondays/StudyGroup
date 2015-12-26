@@ -17,15 +17,24 @@ class UsersController < ApplicationController
     if @user.nil?
       render :new
     else
-    
+
       redirect_to user_path(@user)
-      
+
     end
   end
 
   def show
-    
     @user = User.find(params[:id])
+  end
+
+  def confirm
+    @token = params[:token]
+    # if User.confirm(@token)
+    #   flash[:notice] = "Account confirmed."
+    # else
+    #   flash[:notice] = "Token invalid."
+    # end
+    redirect_to root_path
   end
 
   private
