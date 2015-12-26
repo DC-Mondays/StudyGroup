@@ -1,10 +1,5 @@
 require 'test_helper'
-<<<<<<< HEAD
-require 'mocha/mini_test'
-=======
-require 'mocha/expectation'
 require 'minitest/mock'
->>>>>>> b3690640c0606619707f9a0a03be88b5dea3c74b
 
 class UserTest < ActiveSupport::TestCase
 
@@ -35,7 +30,6 @@ class UserTest < ActiveSupport::TestCase
 
     mock.expect(:call, user, [String, String])
     InviteMailer.stub(:welcome_email, mock) do
-      binding.pry
       outcome = User.send_invite(admin, user)
       assert_equal user, outcome
     end
