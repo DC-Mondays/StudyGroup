@@ -29,11 +29,11 @@ class UsersController < ApplicationController
 
   def confirm
     @token = params[:token]
-    # if User.confirm(@token)
-    #   flash[:notice] = "Account confirmed."
-    # else
-    #   flash[:notice] = "Token invalid."
-    # end
+    if User.confirm(@token)
+      flash[:notice] = "Account confirmed."
+    else
+      flash[:notice] = "Token invalid."
+    end
     redirect_to root_path
   end
 

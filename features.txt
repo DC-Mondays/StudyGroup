@@ -1,0 +1,65 @@
+StudyGroup Features
+
+Use Case: RoR Pair Programming Study Group
+	Topics: TDD: Mocks, 
+			Rails Core: Mailers, ActiveRecord
+			Frontend: Javascript, CSS, Bootstrap
+			Gems We Love
+			DCPairProgrammersLibraries: StudyGroup
+			Reading Code Together
+			Tech Talks
+			
+			
+			
+Users (Admin boolean)
+	Admin should be able to invite users to join studygroup
+	Change Password
+		
+	Forgot Login
+	Edit Profile
+	Go Inactive (stop sending me these damn emals!)
+	Can be Suspended by Admin
+	
+PriorityMessages
+	Algorithm selected content for frontpage feed
+
+Messages: Organized into Lists(Most Recent) & (By Tag) & (Chronologically)
+	Owned by Users
+	User can delete messages they own
+	Admin can delete any messages
+	Messages are taggable
+	Pinnable
+	Grab presentation templates from Events, Notes, Announcements
+	
+MessageAlert
+	sender
+	recipients
+	resource_link
+	
+Event (displayed as message --> taggable, flowable)
+	Note
+	Time, EndTime
+	Location: Hangout Room URL or Physical Meeting
+	Event has_many Participants thru => EventParticipants
+	
+	Archived when currentTime > expiryTime (after event ends)
+	
+ObjectOfStudy (e.g. a github repository)
+	has_many notes
+	research statement
+	has a study plan
+	has a study path (with path nodes)
+	Investigators (who is is participating in this work)
+	
+	
+Notes
+	Title
+	Text
+	Published boolean
+	
+Document
+
+
+
+Frontend: Bootstrap With SASS
+

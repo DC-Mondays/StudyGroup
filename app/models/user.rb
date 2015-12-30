@@ -25,6 +25,17 @@ class User < ActiveRecord::Base
   end
 
   def self.confirm(token)
+    my_user = User.find_by(:confirmation_token => token)
+
+    if my_user != nil
+      
+       my_user.update_attribute(:confirmed, true)
+       my_user.update_attribute(:confirmation_token, nil)
+    
+      return my_user
+     else
+      return nil
+     end
   end
 
   private

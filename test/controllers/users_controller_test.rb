@@ -26,8 +26,16 @@ class UsersControllerTest < ActionController::TestCase
     User.stub(:confirm, mock) do
       post :confirm, :token => "potato"
 
-      assert_silent { mock.verify }
+      assert_silent do
+        begin
+          mock.verify
+        rescue Exception => e
+          puts "We found an error #{}"
+
+        end
+      end
     end
+
 
   end
 end
