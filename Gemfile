@@ -29,6 +29,9 @@ gem 'mail'
 gem 'cancancan', '~> 1.10'
 gem 'mocha', '~> 1.1.0'
 gem 'figaro'
+gem 'capybara'
+gem 'minitest-rails-capybara'
+gem 'selenium-webdriver'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
