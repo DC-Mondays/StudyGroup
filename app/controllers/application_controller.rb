@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   include CanCan::ControllerAdditions
 
   def current_user
-    @current_user = session[:current_user] || nil
+    @current_user = User.find_by(id: session[:current_user]) || nil
   end
-  
+
   def set_user(email_address, password)
     my_user = User.authenticate(email_address, password)
     if my_user != nil

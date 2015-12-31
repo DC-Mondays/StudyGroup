@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :user do
     email "test@email.com"
     handle  "Doe"
+    password "password123"
     admin false
     confirmed true
   end
@@ -19,6 +20,6 @@ FactoryGirl.define do
     confirmation_token "4db8dd474ea55e8a827d2f5330e58dbb"
     admin false
   end
-  
-  
+
+
 end

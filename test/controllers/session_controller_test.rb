@@ -5,15 +5,14 @@ class SessionControllerTest < ActionController::TestCase
     user = FactoryGirl.create(:user)
 
     User.stub(:authenticate, user) do
-      
+
       post :create, :email => user.email, :password => user.password
     end
     assert_equal "You have successfully logged in #{user.handle}", flash[:notice]
-    
+
   end
-  
+
   test "should NOT create a session for user improper credentials" do
-  
   end
 
 end

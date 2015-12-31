@@ -52,7 +52,12 @@ class UserTest < ActiveSupport::TestCase
     token = my_user.confirmation_token || raise(Exception, "token should not be nil in test setup")
     assert_equal nil, User.confirm("blip blip blue")
   end
-  
- 
+
+  test "User.authenticate returns user when user credentials are correct" do
+    my_user = FactoryGirl.create(:user)
+    User.stub(:hash_password, my_user.password) do
+      assert_equal my_user, User.authenticate(my_user.email, my_user.password)
+    end
+  end
 
 end

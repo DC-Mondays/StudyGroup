@@ -3,12 +3,13 @@ class User < ActiveRecord::Base
   validates :email, presence: true
 
   def self.authenticate(email_address, password)
-    #hashed_password = hash_password(password)
-    #my_user = User.find_by(:email => email_address)
-    #if my_user.password == hashed_password
-    # my_user
-    #else
-     # nil
+    hashed_password = hash_password(password)
+    my_user = User.find_by(:email => email_address)
+    if my_user.password == hashed_password
+      my_user
+    else
+      nil
+    end
   end
 
   def self.invite(user, creator)
@@ -37,10 +38,10 @@ class User < ActiveRecord::Base
     my_user = User.find_by(:confirmation_token => token)
 
     if my_user != nil
-      
+
        my_user.update_attribute(:confirmed, true)
        my_user.update_attribute(:confirmation_token, nil)
-    
+
       return my_user
      else
       return nil
@@ -62,6 +63,10 @@ class User < ActiveRecord::Base
     invite_body << "/users/confirm/"
     invite_body << invitee.confirmation_token
     invite_body << "\nThank You Very Much, \nStudyGroup Team"
+  end
+
+  def self.hash_password(password)
+
   end
 
 
