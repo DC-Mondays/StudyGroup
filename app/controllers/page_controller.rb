@@ -3,5 +3,6 @@ class PageController < ApplicationController
   end
 
   def user_home
+    binding.pry
   end
 end

@@ -3,6 +3,7 @@ class SessionController < ApplicationController
   end
 
   def create
-    redirect_to '/pages/user_home'
+    set_user(params['email'], params['password'])
+    redirect_to page_user_home_path
   end
 end

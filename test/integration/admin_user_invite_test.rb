@@ -17,7 +17,9 @@ class AdminUserInviteTest < Capybara::Rails::TestCase #ActionDispatch::Integrati
 
     click_on 'Login'
 
-    #binding.pry
-    assert_current_path 'pages/user_home'
+
+    assert_current_path '/page/user_home'
+    
+    assert page.has_content?("Welcome, #{admin.handle}"), "Should display username in welcome message"
   end
 end

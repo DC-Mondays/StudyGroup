@@ -2,6 +2,15 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
 
+  def self.authenticate(email_address, password)
+    #hashed_password = hash_password(password)
+    #my_user = User.find_by(:email => email_address)
+    #if my_user.password == hashed_password
+    # my_user
+    #else
+     # nil
+  end
+
   def self.invite(user, creator)
     return nil if creator.nil?
 
