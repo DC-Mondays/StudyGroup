@@ -3,6 +3,7 @@ FactoryGirl.define do
     email "test@email.com"
     handle  "Doe"
     password "password123"
+    password_salt "abcde"
     admin false
     confirmed true
   end
@@ -10,12 +11,16 @@ FactoryGirl.define do
   factory :admin_user, class: User do
     email "admin@email.com"
     handle  "Sys Admin"
+    password "headhoncho"
+    password_salt "efghij"
     admin true
   end
 
   factory :unconfirmed_user, class: User do
     email "unconfirmed@email.com"
     handle "unconfirmed"
+    password nil
+    password_salt nil
     confirmed false
     confirmation_token "4db8dd474ea55e8a827d2f5330e58dbb"
     admin false

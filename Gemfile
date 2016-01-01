@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
-
+gem 'bcrypt', '~> 3.1', '>= 3.1.10'
 # Use postgresql as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -43,6 +43,8 @@ gem 'selenium-webdriver'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'mysql2', '~> 0.4.2'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'factory_girl_rails', '~> 4.0'
