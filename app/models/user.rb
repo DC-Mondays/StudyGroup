@@ -1,21 +1,16 @@
 class User < ActiveRecord::Base
-  
-   
 
   validates :email, presence: true
-  
-  
 
   def self.authenticate(email_address, password)
-   
     my_user = User.find_by(:email => email_address)
-    hashed_password = hash_password(password, my_user.password_salt) unless my_user == nil 
-    
-    
+
+    hashed_password = hash_password(password, my_user.password_salt) unless my_user == nil
+    binding.pry
     if my_user.password == hashed_password
       my_user
     else
-      false
+      nil
     end
   end
 

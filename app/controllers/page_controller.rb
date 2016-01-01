@@ -3,6 +3,6 @@ class PageController < ApplicationController
   end
 
   def user_home
-    binding.pry
+    @user = current_user
   end
 end

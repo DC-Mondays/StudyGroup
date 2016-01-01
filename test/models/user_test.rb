@@ -59,11 +59,11 @@ class UserTest < ActiveSupport::TestCase
       assert_equal my_user, User.authenticate(my_user.email, my_user.password)
     end
   end
-  
+
   test "User.authenticate returns false when user credentials are incorrect" do
     my_user = FactoryGirl.create(:user)
     User.stub(:hash_password, "a different password") do
-      assert_equal false, User.authenticate(my_user.email, "wrongpassword")
+      assert_equal nil, User.authenticate(my_user.email, "wrongpassword")
     end
   end
 

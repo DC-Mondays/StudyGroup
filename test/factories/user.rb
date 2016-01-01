@@ -11,7 +11,7 @@ FactoryGirl.define do
   factory :admin_user, class: User do
     email "admin@email.com"
     handle  "Sys Admin"
-    password "headhoncho"
+    password "$2a$10$UdAEJt6cShY.hk3TAV8xR.wUGtTt5d54oeqfNnZS8Xa63cLHwB8c."
     password_salt "efghij"
     admin true
   end
