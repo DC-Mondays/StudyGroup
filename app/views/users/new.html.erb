@@ -1,1 +1,5 @@
-This is the new users page
+<%= form_for @user, url: {action: "create"} do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.submit "Send Invite" %>
+<% end %>

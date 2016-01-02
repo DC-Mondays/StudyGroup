@@ -5,21 +5,18 @@ class UsersController < ApplicationController
   end
 
   def create
-
     if current_user.nil?
       flash[:notice] = "You don't have authority to access this page"
       redirect_to root_path
       return
     end
-
     @user = User.invite(invite_params, current_user)
 
     if @user.nil?
       render :new
     else
-
+      flash[:notice] = "Invite sent."
       redirect_to user_path(@user)
-
     end
   end
 

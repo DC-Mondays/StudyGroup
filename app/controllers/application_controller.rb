@@ -5,8 +5,13 @@ class ApplicationController < ActionController::Base
 
   include CanCan::ControllerAdditions
 
+  before_action :is_admin?
   def current_user
     @current_user = User.find_by(id: session[:current_user]) || nil
+  end
+
+  def is_admin?
+    @admin = current_user.admin? unless current_user.nil?
   end
 
   def set_user(email_address, password)
