@@ -13,7 +13,7 @@ class AdminUserInviteTest < Capybara::Rails::TestCase #ActionDispatch::Integrati
   end
   test "admin logs in" do
     #https!
-    DatabaseCleaner.start
+    
     admin = FactoryGirl.create(:admin_user)
     password = "my secret password"
 

@@ -2,12 +2,12 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
 
-  def self.authenticate(email_address, password)
+  def self.authenticate(email_address, raw_password)
     my_user = User.find_by(:email => email_address)
-
-    hashed_password = hash_password(password, my_user.password_salt) unless my_user == nil
-    binding.pry
-    if my_user.password == hashed_password
+    
+    return nil unless my_user
+    
+    if check_password(my_user.password, raw_password)
       my_user
     else
       nil
@@ -67,9 +67,15 @@ class User < ActiveRecord::Base
     invite_body << "\nThank You Very Much, \nStudyGroup Team"
   end
 
-  def self.hash_password(password, password_salt)
-    BCrypt::Password.create(password + password_salt)
+  def self.create_password(raw_password)
+    BCrypt::Password.create(raw_password)
+    
   end
+  
+  def self.check_password(hashed_password, raw_password)
+    BCrypt::Password.new(hashed_password).is_password?(raw_password)
+  end
+  
 
 
 end
