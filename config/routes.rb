@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :session
-  post "/confirm/:token", to: "users#confirm"
+  get "/confirm/:token", to: "users#confirm"
   get "/login", to: "session#new"
   get "page/user_home"
 

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def self.invite(user, creator)
+    binding.pry
     return nil if creator.nil?
 
     if User.find_by_email(user["email"])
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
   def self.send_invite(creator, created)
     invite_body = create_invite_body(created)
 
-    InviteMailer.welcome_email(created.email, invite_body)
+    InviteMailer.welcome_email(created.email, invite_body).deliver_now!
     created
   end
 
@@ -62,7 +63,7 @@ class User < ActiveRecord::Base
     invite_body = "Hello StudyGroup Friend,\n"
     invite_body << "Please cut and paste this link to confirm your invitation to membership:\n"
     invite_body << ENV['THIS_URL']
-    invite_body << "/users/confirm/"
+    invite_body << "/confirm/"
     invite_body << invitee.confirmation_token
     invite_body << "\nThank You Very Much, \nStudyGroup Team"
   end
