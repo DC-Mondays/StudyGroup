@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email_address, raw_password)
     my_user = User.find_by(:email => email_address)
-    
+
     return nil unless my_user
-    
+
     if check_password(my_user.password, raw_password)
       my_user
     else
@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   end
 
   def self.invite(user, creator)
-    binding.pry
     return nil if creator.nil?
 
     if User.find_by_email(user["email"])
@@ -70,13 +69,13 @@ class User < ActiveRecord::Base
 
   def self.create_password(raw_password)
     BCrypt::Password.create(raw_password)
-    
+
   end
-  
+
   def self.check_password(hashed_password, raw_password)
     BCrypt::Password.new(hashed_password).is_password?(raw_password)
   end
-  
+
 
 
 end

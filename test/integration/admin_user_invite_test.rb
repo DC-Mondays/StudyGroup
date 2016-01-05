@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'database_cleaner'
 
-class AdminUserInviteTest < Capybara::Rails::TestCase #ActionDispatch::IntegrationTest
+class AdminUserInviteTest < Capybara::Rails::TestCase
   DatabaseCleaner.strategy = :truncation
   self.use_transactional_fixtures = false
   before :each do

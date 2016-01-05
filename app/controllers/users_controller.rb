@@ -24,24 +24,48 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @headline = "Please save your password and user handle"
+    @user = User.find(params[:id])
+    #binding.pry
+  end
+
+  def update
+    @user = User.find_by(params[:id])
+
+    unless params[:password] == params[:password_confirmation]
+      render :edit
+      return
+    end
+
+    if @user.update!(user_params)
+      redirect_to page_user_home_path
+    else
+      render :edit
+    end
+  end
+
+
   def confirm
     @token = params[:token]
-    if User.confirm(@token)
+    my_user = User.confirm(@token)
+
+    if my_user
       flash[:notice] = "Account confirmed."
+      redirect_to edit_user_path(my_user)
     else
       flash[:notice] = "Token invalid."
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:handle, :email)
+    params.require(:user).permit(:handle,:password)
   end
 
   def invite_params
-    #binding.pry
     params.require('user').permit('email')
   end
 end
