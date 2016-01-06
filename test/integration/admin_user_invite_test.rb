@@ -13,8 +13,7 @@ class AdminUserInviteTest < Capybara::Rails::TestCase
   end
   test "admin logs in" do
     #https!
-
-    admin = FactoryGirl.create(:admin_user)
+    admin = FactoryGirl.create(:admin_user, :email => "adminlogsin@admin.net")
     password = "my secret password"
 
     visit "/login"
@@ -26,6 +25,7 @@ class AdminUserInviteTest < Capybara::Rails::TestCase
     fill_in 'Email', with: admin.email
     fill_in 'Password', with: password
 
+
     click_on 'Login'
 
     assert_current_path '/page/user_home'
@@ -35,7 +35,7 @@ class AdminUserInviteTest < Capybara::Rails::TestCase
   end
 
   test "admin can invite user" do
-    admin = FactoryGirl.create(:admin_user)
+    admin = FactoryGirl.create(:admin_user, :email => "admincaninviteuser@admin.net")
     password = "my secret password"
 
     visit "/login"
@@ -50,7 +50,6 @@ class AdminUserInviteTest < Capybara::Rails::TestCase
     click_on 'Login'
 
     assert page.has_selector?('ul#admin_options', "Admin should have admin menu")
-    #binding.pry
     assert( page.has_content?('Invite User'), "Admin should see an invite link")
 
     click_on "Invite User"

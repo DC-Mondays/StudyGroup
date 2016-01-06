@@ -5,13 +5,24 @@ class ApplicationController < ActionController::Base
 
   include CanCan::ControllerAdditions
 
+
   before_action :is_admin?
+
+  rescue_from CanCan::AccessDenied do |exception|
+
+      redirect_to root_url, :alert => "You don't have authorization for this resource"
+    end
+
   def current_user
     @current_user = User.find_by(id: session[:current_user]) || nil
   end
 
   def is_admin?
     @admin = current_user.admin? unless current_user.nil?
+  end
+
+  def set_session_for_confirmed_user(user)
+    session[:current_user] = user.id
   end
 
   def set_user(email_address, password)

@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :user do
     email "test@email.com"
-    handle  "Doe"
-    password "password123"
+    handle  "JohnDoe"
+    password "stub password"
     password_salt "abcde"
     admin false
     confirmed true

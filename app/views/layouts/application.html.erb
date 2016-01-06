@@ -8,7 +8,10 @@
 </head>
 <body>
 <%= render "partials/admin_menu" %>
+<%= flash[:error] %>
+<%= flash[:alert] %>
 <%= flash[:notice] %>
+
 <%= yield %>
 
 </body>

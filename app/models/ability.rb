@@ -3,7 +3,15 @@ class Ability
 
   def initialize(user)
     
+
     
+    can :update, User do |my_user|
+      if my_user == user
+        true
+      else
+        false
+      end
+    end
     
     
     

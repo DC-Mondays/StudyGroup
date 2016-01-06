@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  
   def new
     @user = User.new
   end
@@ -25,12 +25,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+
+
     @headline = "Please save your password and user handle"
     @user = User.find(params[:id])
-    #binding.pry
+
+    authorize! :update, @user, :message => "my exception message"
+
   end
 
   def update
+    can? :update, @user
     @user = User.find_by(params[:id])
 
     unless params[:password] == params[:password_confirmation]
@@ -52,6 +57,7 @@ class UsersController < ApplicationController
 
     if my_user
       flash[:notice] = "Account confirmed."
+      set_session_for_confirmed_user(my_user)
       redirect_to edit_user_path(my_user)
     else
       flash[:notice] = "Token invalid."
