@@ -7,12 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render "partials/admin_menu" %>
-<%= flash[:error] %>
-<%= flash[:alert] %>
-<%= flash[:notice] %>
-
-<%= yield %>
+    <%= render "partials/header" %>
+    <div class="container">
+    <div class="row flash_messages">
+      <% {:error => "danger", :alert => "warning", :notice => "success"}.each do |k,v| %>
+        <%= content_tag(:div, flash[k], class:"alert alert-#{v}") if flash[k]%>
+      <% end %>
+    </div>
+    <div class="row">
+      <%= yield %>
+    </div>
+  </div>
 
 </body>
 </html>
